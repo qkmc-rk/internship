@@ -21,6 +21,49 @@ window.onload = ()=>{
             }
     })
 
+    $.ajax({
+        type:"get",
+        url:`${config.ip}:${config.port}/user/reportStage`,
+        dataType:"json",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+        },
+        success(data){
+            console.log(data.data.isReportStage1Open)
+            if(data.data.isReportStage1Open){
+                $('.showToast').css({
+                    display:"none"
+                })
+
+                $(".submit").on("click",()=>{
+                    let stage2_summary = summary.value
+                    let stage2GuideDate  = starttime.value ;
+                    let stage2GuideWay  = method.value ;
+                    $.ajax({
+                        type:"post",
+                        url:`${config.ip}:${config.port}/student/report/stage2`,
+                        dataType:"json",
+                        data:{
+                            stage2_summary:stage2_summary,
+                            stage2GuideDate:stage2GuideDate,
+                            stage2GuideWay:stage2GuideWay
+                        },
+                        beforeSend: function(request) {
+                            request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+                        },
+                        success:(data)=>{
+                            alert("提交成功!")
+                            window.location.href = "/student"
+                        }
+                    })
+                })
+
+            }
+            
+        },
+        error(){}
+    })
+
     $('.logout').on("click",()=>{
         alert("注销成功")
         sessionStorage.setItem("userinfo","")
@@ -28,28 +71,5 @@ window.onload = ()=>{
     })
 
 
-    $(".submit").on("click",()=>{
-        let stage1_summary = summary.value
-        // console.log(stage1_summary)
-        let stage1GuideDate  = starttime.value ;
-        let stage1GuideWay  = method.value ;
-        $.ajax({
-            type:"post",
-            url:`${config.ip}:${config.port}/student/report/stage1`,
-            dataType:"json",
-            data:{
-                stage1_summary:stage1_summary,
-                stage1GuideDate:stage1GuideDate,
-                stage1GuideWay:stage1GuideWay
-            },
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
-            },
-            success:(data)=>{
-                alert("提交成功!")
-                // console.log(data)
-                window.location.href = "/student"
-            }
-        })
-    })
+    
 }

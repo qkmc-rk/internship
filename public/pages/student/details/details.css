@@ -96,3 +96,38 @@ body{
     transform:translateY(-50%);
     font-size: 18px;
 }
+.selectTeacher{
+    padding: 20px 0;
+}
+.tips{
+    margin-bottom: 20px;
+}
+#selectTeacher{
+    padding: 10px;
+    font-size: 20px;
+}
+#selectTeacher option{
+    display: inline-block;
+    height: 30px ;
+    padding: 5px;
+}
+.select-btn{
+    vertical-align: text-bottom;
+    background-color: #07c160;
+    color: white;
+    transition: 0.3s;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 10px;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+.select-btn:hover{
+    background-color: #06984c;
+}
+.select-controls{
+    display: flex;
+    align-items: center;
+}

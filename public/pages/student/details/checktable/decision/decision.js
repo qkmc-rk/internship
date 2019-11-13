@@ -69,4 +69,29 @@ $(()=>{
             console.log(err)
         }
     })
+
+
+    $(".download-btn").on("click",()=>{
+        $.ajax({
+            type:"get",
+            url:`${config.ip}:${config.port}/student/identify/form`,
+            dataType:"json",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+            },
+            success(data){
+                let msg = data.data
+                let url = `${config.ip}:${config.port}/`+msg
+                window.location.href = url
+                // console.log(url)
+
+            },
+            error(err){
+                console.log(err)
+            }
+        })
+    })
+
+
+
 })

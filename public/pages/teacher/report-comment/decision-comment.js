@@ -108,7 +108,7 @@ $(()=>{
         if(CPODate.value){
             options.CPODate = CPODate.value
         }
-        console.log(options)
+        // console.log(options)
         $.ajax({
             type:"POST",
             url:`${config.ip}:${config.port}/teacher/student/identifyForm`,
@@ -119,8 +119,11 @@ $(()=>{
             success(data){
                 alert("提交成功!")
                 window.location.href = "/teacher"
+            },
+            error(){
+                alert("服务器错误,请重试")
             }
         })
-
+            
     })
 })
