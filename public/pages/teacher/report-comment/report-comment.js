@@ -40,10 +40,10 @@ $(()=>{
         </div>
         <div class="content flexbox">
             <div class="content-name">学院指导教师工号：<span id="" class="black">${msg.teacherNo}</span></div>
-            <div class="content-name">实习单位：<span id="" class="black">${msg.corpName}</span></div>
+            <div class="content-name">实习单位：<span id="" class="black">${msg.corpName?msg.corpName:"暂无"}</span></div>
         </div>
         <div class="content flexbox">
-            <div class="content-name">实习岗位：<span id="" class="black">${msg.corpPosition}</span></div>
+            <div class="content-name">实习岗位：<span id="" class="black">${msg.corpPosition?msg.corpPosition:"暂无"}</span></div>
             
         </div>
         

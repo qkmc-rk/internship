@@ -68,3 +68,17 @@ body{
 .download-btn:hover{
     background-color: #06984c;
 }
+.return-btn{
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    background-color:#9653b9 ;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+.return-btn:hover{
+    background-color: #75428f;
+}

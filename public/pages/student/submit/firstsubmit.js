@@ -10,15 +10,29 @@ window.onload = ()=>{
                 request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
             },
             success:(data)=>{
+                // console.log(data)
                 const msg = data.data
                 // console.log(msg)
-                starttime.value = msg.stage1GradeDate
+                gmt_start.value = msg.gmtStart
+                starttime.value = msg.stage1GuideDate
                 method.value = msg.stage1GuideWay
                 summary.value = msg.stage1Summary
+
+                $('.limit').each((index,item)=>{
+
+                    $(item).find('.summary-num').html($(item).siblings().get(1).value.length)
+
+                })
             },
             error:(err)=>{
                 alert("服务器繁忙,请重试")
             }
+    })
+
+    $('#summary').on("input",()=>{
+        // console.log(111)
+        $('.summary-num').html($('#summary').get(0).value.length)
+        // $(this).find('.summary-num').html($(this).siblings().get(1).value.length)
     })
 
     $.ajax({
@@ -29,24 +43,32 @@ window.onload = ()=>{
             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
         },
         success(data){
-            console.log(data.data.isReportStage1Open)
+            // console.log(data.data.isReportStage1Open)
             if(data.data.isReportStage1Open){
                 $('.showToast').css({
                     display:"none"
                 })
 
                 $(".submit").on("click",()=>{
-                    let stage2_summary = summary.value
-                    let stage2GuideDate  = starttime.value ;
-                    let stage2GuideWay  = method.value ;
+                    let stage1Summary = summary.value
+                    let stage1GuideDate  = starttime.value ;
+                    // console.log(typeof stage1GuideDate)
+                    let stage1GuideWay  = method.value ;
+                    let gmtStart = gmt_start.value;
+                    
+                    if(summary.value.length>1050){
+                        alert("字数超过限制,请更改后提交!")
+                        return
+                    }
                     $.ajax({
                         type:"post",
-                        url:`${config.ip}:${config.port}/student/report/stage2`,
+                        url:`${config.ip}:${config.port}/student/report/stage1`,
                         dataType:"json",
                         data:{
-                            stage2_summary:stage2_summary,
-                            stage2GuideDate:stage2GuideDate,
-                            stage2GuideWay:stage2GuideWay
+                            gmtStart:gmtStart,
+                            stage1Summary:stage1Summary,
+                            stage1GuideDate:stage1GuideDate,
+                            stage1GuideWay:stage1GuideWay
                         },
                         beforeSend: function(request) {
                             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
@@ -63,6 +85,11 @@ window.onload = ()=>{
         },
         error(){}
     })
+
+    
+
+
+
 
     $('.logout').on("click",()=>{
         alert("注销成功")

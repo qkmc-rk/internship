@@ -88,5 +88,9 @@ $(()=>{
     })
 
 
+    $('.return-btn').on("click",()=>{
+        window.location.href = "/student"
+    })
+
 })
     

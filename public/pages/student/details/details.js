@@ -22,12 +22,16 @@ $(() => {
         },
         success: function (data) {
             std = data.data
-            // console.log(std)
+            console.log(std)
             let stdTemplate = ` <div class="title">学生信息</div>
             <div class="text"><span>姓名</span>${std.name}</div>
             <div class="text"><span>学号</span>${std.stuNo}</div>
             <div class="text"><span>微信</span>${std.wechat?std.wechat:"暂无"}</div>
+            <div class="text"><span>qq</span>${std.qq?std.qq:"暂无"}</div>
+            <div class="text"><span>电话</span>${std.phone?std.phone:"暂无"}</div>
             <div class="text"><span>专业</span>${std.major}</div>
+            <div class="text"><span>实习岗位</span>${std.corpPosition?std.corpPosition:"暂无"}</div>
+            <div class="text"><span>实习企业</span>${std.corpName?std.corpName:"暂无"}</div>
             <div class="text"><span>身份证号</span>${std.idCard}</div>
             <div class="text">${std.college}</div>
             <div class="text"></div>

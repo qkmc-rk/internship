@@ -43,7 +43,10 @@
     <!--填写报告册-->
     <form action="firstSubmit.html" method="post">
         <div class="name">第一阶段填报报告表</div>
-        
+        <label for="gmt_start">
+            <div class="title">实习开始时间</div>
+            <input type="date" id="gmt_start" name="gmt_start">
+        </label>
 
         <label for="starttime">
             <div class="title">指导时间</div>
@@ -56,6 +59,7 @@
         <label for="summary">
             <div class="title">实习总结</div>
             <textarea name="summary" id="summary" cols="30" rows="20"></textarea>
+            <div class="limit"><span class="summary-num">0</span>/1050</div>
         </label>
         <br>
         <button type="button" class="submit">提交</button>

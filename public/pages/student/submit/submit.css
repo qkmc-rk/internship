@@ -57,6 +57,12 @@ textarea{
     transform: translateX(-50%);
     bottom: 10px;
 }
+.limit{
+    width: 520px;
+    text-align: right;
+    font-size: 14px;
+    color: gray;
+}
 .submit:hover{
     background-color: #049c4d;
 }

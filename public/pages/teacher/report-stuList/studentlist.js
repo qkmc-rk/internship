@@ -1,4 +1,5 @@
 $(()=>{
+    let stdList = {}
     $.ajax({
         type:"GET",
         url:`${config.ip}:${config.port}/teacher/students`,
@@ -7,8 +8,13 @@ $(()=>{
             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
         },
         success(data){
-            let stdList = data.data
-            console.log(data)
+            stdList = data.data
+            
+            if(!stdList){
+                $('.stuList-wrap').append(`<div class="showtoast">暂无学生信息!</div>`)
+                return 
+            }
+            // console.log(data)
             let listDom = ``
 
             for(let item of stdList){
@@ -33,13 +39,13 @@ $(()=>{
                 </td>
                 <td>
                     <div class="line-row">
-                        Q Q:${item.qq}
+                        Q Q:${item.qq?item.qq:"暂无"}
                     </div>
                     <div class="line-row">
-                        电话:${item.phone}
+                        电话:${item.phone?item.phone:"暂无"}
                     </div>
                     <div class="line-row">
-                        微信:${item.wechat}
+                        微信:${item.wechat?item.wechat:"暂无"}
                     </div>
                 </td>
                 <td>
@@ -107,4 +113,136 @@ $(()=>{
         // $('.check-decision').click(function () {
         //     window.location.href = '/teacher-decision'
         // })
+
+        $('.search-input').on("input",function(){
+            let searching_stu = []
+            let value = $('.search-input').get(0).value
+            if(!value){
+                //渲染原来页面
+                $('.showtoast').remove()
+                if(!stdList){
+                    $('.stuList-wrap').append(`<div class="showtoast">暂无学生信息!</div>`)
+                    return 
+                }
+                let listDom = ``
+                for(let item of stdList){
+                    let template = `<tr class="stuList-row">
+                <td class="align-center">${item.stuNo}</td>
+                <td class="align-center">${item.name}</td>
+                <td class="align-center">${item.sex}</td>
+                <td class="align-center">${item.age}</td>
+                <td class="align-center">${item.college}</td>
+                <td>${item.major}</td>
+                <td>
+                    <div class="line-row">
+                        企业:${item.corpName?item.corpName:"暂无"}
+                    </div>
+                    <div class="line-row">
+                        岗位:${item.corpPosition?item.corpPosition:"暂无"}
+                    </div>
+                </td>
+                <td class="align-center">
+                ${item.corpTeacherNo?item.corpTeacherNo:"暂无"}
+                </td>
+                <td>
+                    <div class="line-row">
+                        Q Q:${item.qq?item.qq:"暂无"}
+                    </div>
+                    <div class="line-row">
+                        电话:${item.phone?item.phone:"暂无"}
+                    </div>
+                    <div class="line-row">
+                        微信:${item.wechat?item.wechat:"暂无"}
+                    </div>
+                </td>
+                <td>
+                    <button class="check check-report" data-id="${item.stuNo}">查看</button>
+                </td>
+                <td class="check-td">
+                    <button class="check check-decision" data-id="${item.stuNo}">查看</button>
+                </td>
+            </tr>`
+                listDom+=template
+                }
+                $('tbody').html(listDom)
+                
+            }else{
+                for(let i = 0;i<stdList.length;i++){
+                    //添加搜索条件:
+                    if(stdList[i]['stuNo'].search(value)!==-1){
+                        searching_stu.push(stdList[i])
+                        continue
+                    }
+                    if(stdList[i]['name'].search(value)!==-1){
+                        searching_stu.push(stdList[i])
+                        continue
+                    }
+                    if(stdList[i]['major'].search(value)!==-1){
+                        searching_stu.push(stdList[i])
+                        continue
+                    }
+                    if(stdList[i]['college'].search(value)!==-1){
+                        searching_stu.push(stdList[i])
+                        continue
+                    }
+                    
+    
+                }
+    
+                //渲染页面
+                if(searching_stu.length===0){
+                    $('tbody').html("")
+                    $('.showtoast').remove()
+                    $('.stuList-wrap').append(`<div class="showtoast">暂无学生信息!</div>`)
+                    return 
+                }
+                $('.showtoast').remove()
+                let listDom = ``
+                for(let item of searching_stu){
+                    let template = `<tr class="stuList-row">
+                    <td class="align-center">${item.stuNo}</td>
+                    <td class="align-center">${item.name}</td>
+                    <td class="align-center">${item.sex}</td>
+                    <td class="align-center">${item.age}</td>
+                    <td class="align-center">${item.college}</td>
+                    <td>${item.major}</td>
+                    <td>
+                        <div class="line-row">
+                            企业:${item.corpName?item.corpName:"暂无"}
+                        </div>
+                        <div class="line-row">
+                            岗位:${item.corpPosition?item.corpPosition:"暂无"}
+                        </div>
+                    </td>
+                    <td class="align-center">
+                    ${item.corpTeacherNo?item.corpTeacherNo:"暂无"}
+                    </td>
+                    <td>
+                        <div class="line-row">
+                            Q Q:${item.qq?item.qq:"暂无"}
+                        </div>
+                        <div class="line-row">
+                            电话:${item.phone?item.phone:"暂无"}
+                        </div>
+                        <div class="line-row">
+                            微信:${item.wechat?item.wechat:"暂无"}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="check check-report" data-id="${item.stuNo}">查看</button>
+                    </td>
+                    <td class="check-td">
+                        <button class="check check-decision" data-id="${item.stuNo}">查看</button>
+                    </td>
+                </tr>`
+                    listDom+=template
+                }
+                $('tbody').html(listDom)
+            }
+            
+            // console.log(searching_stu)
+        })
+
+
+
     })

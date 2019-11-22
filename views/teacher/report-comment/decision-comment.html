@@ -107,7 +107,7 @@
             <div class="inner-content"><textarea name="corpTeacherOpinion" id="corpTeacherOpinion" cols="30" rows="10"></textarea>
             </div>
             <div class="inner-content">实习成绩：<span>
-                    <select name="corpTeacherScore" id="corpTeacherScore" class="rep-garde-select">
+                    <select name="corpTeacherGrade" id="corpTeacherGrade" class="rep-garde-select">
                         <option value="优秀">优秀</option>
                         <option value="良好">良好</option>
                         <option value="中等">中等</option>
@@ -129,15 +129,29 @@
         </div>
 
         <div class="content">
-            <div class="content-name">所在学院指导老师成绩评定</div>
+            <!-- <div class="content-name">所在学院指导老师成绩评定</div>
             <div class="inner-content">
                 <textarea name="teacherGrade" id="teacherGrade" cols="30" rows="10"></textarea>
             </div>
             <div class="timeset">
                 时间<input type="date" id="TGDate" name="TGDate">
-            </div>
+            </div> -->
+            <div class="content-name">所在学院指导老师成绩评定</div>
+            <div class="inner-content"><span>
+                <select name="teacherGrade" id="teacherGrade" class="rep-garde-select">
+                    <option value="优秀">优秀</option>
+                    <option value="良好">良好</option>
+                    <option value="中等">中等</option>
+                    <option value="及格">及格</option>
+                    <option value="不及格">不及格</option>
+                </select>
+            </span>
         </div>
-        <div class="content">
+        <div class="timeset">
+            时间<input type="date" id="TGDate" name="TGDate">
+        </div>
+        </div>
+        <!-- <div class="content">
             <div class="content-name">综合实习成绩评定</div>
             <div class="inner-content">
                 <textarea name="comprehsvGrade" id="comprehsvGrade" cols="30" rows="10"></textarea>
@@ -145,7 +159,14 @@
             <div class="timeset">
                 时间<input type="date" id="CGDate" name="CGDate">
             </div>
+        </div> -->
+        <div class="content">
+            <div class="content-name">实习单位审核意见</div>
+            <div class="inner-content" id="comprehsvGrade">暂无评价</div>
+            <div class="time"><span class="time-text">时间</span><span class="time-inner" id="CGDate">暂无</span></div>
         </div>
+
+
         <div class="content">
             <div class="content-name">所在学院实习领导小组意见</div>
             <div class="inner-content">
@@ -155,7 +176,7 @@
                 时间<input type="date" id="CPODate" name="CPODate">
             </div>
         </div>
-
+        
         <div class="msg-block">
             <button class="submit" type="button" id="">提交</button>
             <button class="return" id="">返回</button>

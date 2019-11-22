@@ -1,9 +1,42 @@
-window.onload = function(){
+$(function(){
     document.onselectstart = function(){return false}
-    let radio = document.getElementsByName("identity")
+    var radio = document.getElementsByName("identity")
+    // console.log(111)
+    // console.log(IEVersion())
     let useridentity = null;
+    // console.log(BrowserType())
+    if(BrowserType()!=='Edge'&&BrowserType()!=='Chrome'){
+        alert("您现在使用的浏览器不完全兼容此网页,请更换至谷歌浏览器或Edge浏览器")
+        return
+    }
+    document.getElementsByClassName("land-btn")[0].onclick = userCheck
     
-    document.getElementsByClassName("land-btn")[0].onclick =()=>{
+
+    //----------------------表单验证--------------------
+    let $loginBtn = $(".land-btn");
+    let $inputs = $("input");
+    let $warnWord = $(".warn-word");
+    window.onkeydown = function(e){
+      if(e.keyCode == 13){
+        userCheck()
+      }
+    }
+    // $loginBtn.click(function() {
+    //   if (!$($inputs[0]).val()) {
+    //     window.location.href = "#";
+    //     $($warnWord[0]).css("display", "block");
+    //   }else{
+    //     $($warnWord[0]).css("display", "none");
+    //   }
+    //   if (!$($inputs[1]).val()) {
+    //     window.location.href = "#";
+    //     $($warnWord[1]).css("display", "block");
+    //   }else{
+    //     $($warnWord[1]).css("display", "none");
+    //   }
+    // });
+
+    function userCheck(){
         for(let item of radio){
             if(item.checked){
                 useridentity = item.value
@@ -15,7 +48,16 @@ window.onload = function(){
             let loginType = useridentity
             if(!loginType){
                 alert("请选择身份!")
+            }else if(!$($inputs[0]).val()){
+                $($warnWord[0]).css("display", "block");
+            }else if(!$($inputs[1]).val()){
+                $($warnWord[1]).css("display", "block");
             }else{
+                $($warnWord[0]).css("display", "none");
+                $($warnWord[1]).css("display", "none");
+                // console.log(useraccount)
+                // console.log(psw)
+                // console.log(loginType)
                 $.ajax({
                     type:"POST",
                     url:`${config.ip}:${config.port}/user/login`,
@@ -40,6 +82,7 @@ window.onload = function(){
                              
                          }else{
                              alert(data.message)
+                             console.log(data)
                          }
                     },
                     error:function(err){
@@ -47,24 +90,6 @@ window.onload = function(){
                     }
                 })
             }
-       
-        
-
-        
-            
-        
-        // switch (useridentity){
-        //     case 1:
-        //         window.location.href = "/student";
-        //         break;
-        //     case 2:
-        //         window.location.href = "/teacher";
-        //         break;
-        //     default:
-        //         this.alert("请选择身份")
-        // }
-
     }
-    
 
-}
+})
