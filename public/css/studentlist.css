@@ -20,7 +20,10 @@ body {
 }
 .stuList-wrap {
     width: 1200px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
 }
 
 .stuList-table {
@@ -74,6 +77,10 @@ body {
 .unchecked {
     text-align: center;
     color: red;
+}
+.checking{
+    color: orange;
+    text-align: center;
 }
 .align-center{
     text-align:center;

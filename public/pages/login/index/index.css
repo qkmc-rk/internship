@@ -7,16 +7,17 @@ div {
 }
 body {
   cursor: default;
-  background-color: rgb(54, 144, 172);
+  background-color: #20bff6;
 }
 .wrap {
   width: 980px;
   height: 625px;
   margin: 45px auto;
   background-color: rgb(95, 185, 212);
+  background-color: white;
   color: white;
   border-radius: 15px;
-  box-shadow: rgba(52, 139, 165, 0.5) 1px 1px, rgba(52, 139, 165, 0.5) 2px 2px,
+  /* box-shadow: rgba(52, 139, 165, 0.5) 1px 1px, rgba(52, 139, 165, 0.5) 2px 2px,
     rgba(52, 139, 165, 0.5) 3px 3px, rgba(52, 139, 165, 0.5) 4px 4px,
     rgba(52, 139, 165, 0.5) 5px 5px, rgba(52, 139, 165, 0.5) 6px 6px,
     rgba(52, 139, 165, 0.5) 7px 7px, rgba(52, 139, 165, 0.5) 8px 8px,
@@ -65,7 +66,8 @@ body {
     rgba(52, 139, 165, 0.5) 93px 93px, rgba(52, 139, 165, 0.5) 94px 94px,
     rgba(52, 139, 165, 0.5) 95px 95px, rgba(52, 139, 165, 0.5) 96px 96px,
     rgba(52, 139, 165, 0.5) 97px 97px, rgba(52, 139, 165, 0.5) 98px 98px,
-    rgba(52, 139, 165, 0.5) 99px 99px, rgba(52, 139, 165, 0.5) 100px 100px;
+    rgba(52, 139, 165, 0.5) 99px 99px, rgba(52, 139, 165, 0.5) 100px 100px; */
+    box-shadow: 1px 1px 5px 6px #1aa3cb;
 }
 .login-main {
   width: 80%;
@@ -80,20 +82,22 @@ input[type="password"]{
   width: 100%;
   height: 35px;
   margin-bottom: 31px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #dedbdb;
   text-align: center;
 }
 .login-logo {
   height: 66px;
   padding: 0 20px;
-  background-color: rgb(95, 185, 212);
+  /* background-color: rgb(95, 185, 212); */
+  background-color: white;
 }
 .tittle-line {
+  color: black;
   width: 100%;
   margin-top: 50px;
   font-size: 35px;
   text-align: center;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 1px gray;
 }
 .login-form {
   width: 50%;
@@ -101,6 +105,7 @@ input[type="password"]{
   margin-top: 50px;
 }
 .login-row {
+  color: black;
   width: 100%;
   font-size: 24px;
   line-height: 30px;
@@ -116,7 +121,7 @@ input[type="password"]{
 }
 input {
   outline: none;
-  border: none;
+  border: 1px solid #cbcbcb;
   box-sizing: border-box;
   border-radius: 8px;
 }
@@ -126,6 +131,7 @@ input {
   display: flex;
 }
 .identity-check > label {
+  color: black;
     width: 33.3%;
     padding: 5px 8px;
     box-sizing: border-box;
@@ -140,16 +146,19 @@ input {
   font-size: 24px;
   border-radius: 8px;
   color: white;
-  background-color: rgb(71, 206, 188);
+  background-color: #07c160;
   border: none;
   outline: none;
   cursor: pointer;
 }
 .land-btn:hover {
   color: #f1f1f1;
-  background-color: #40b4a5;
+  background-color: #05aa54;
 }
 
+/* .account{
+  color: black;
+} */
 
 .warn-word {
   position: absolute;
