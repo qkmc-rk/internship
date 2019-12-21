@@ -127,7 +127,6 @@ $(()=>{
                 totalScore.value = stuinfo.totalScore
             }
             // totalScore.value = stuinfo.totalScore?stuinfo.totalScore:"优秀"
-
         }
     })
 
@@ -155,6 +154,7 @@ $(()=>{
         error(){}
     })
 
+    //提交
     $('.submit').on("click",()=>{
         let stage1Comment = document.getElementById("stage1Comment")
         let stage1Grade = document.getElementById("stage1Grade")
@@ -224,7 +224,7 @@ $(()=>{
             }
         }
 
-            console.log(options)
+            // console.log(options)
 
         // if(stage1Date.value){
         //     options.stage1Date = stage1Date.value

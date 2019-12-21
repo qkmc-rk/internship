@@ -19,7 +19,8 @@ $(()=>{
                 const msg = data.data
                 practiceContent.value = msg.sxContent
                 selfSummary.value = msg.selfSummary
-
+                corpopinion.value = msg.corpOpinion
+                corpteacheropinion.value = msg.corpTeacherOpinion
                 $('.practice-num').html(practiceContent.value.length)
                 $('.self-num').html(selfSummary.value.length)
             },
@@ -50,7 +51,9 @@ $(()=>{
             dataType:"json",
             data:{
                 practiceContent:pra,
-                selfSummary:summary
+                selfSummary:summary,
+                corpOpinion:corpopinion.value,
+                corpTeacherOpinion:corpteacheropinion.value
             },
             beforeSend: function(request) {
                 request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));

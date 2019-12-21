@@ -10,6 +10,10 @@ router.get('/student',function(req,res){
     
     res.render('./student/details/details.html')
 })
+//绑定企业详细信息
+router.get('/student/corp-bind',function(req,res){
+    res.render('./student/details/corpbinding.html')
+})
 //第一次填写报告册
 router.get('/student/first',function(req,res){
     res.render('./student/submit/firstSubmit.html')

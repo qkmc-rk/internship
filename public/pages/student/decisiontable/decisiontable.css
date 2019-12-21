@@ -23,7 +23,9 @@ input[type="text"]{
     outline: none;
     border: 1px solid #cdc9c9;
 }
-
+#corpopinion,#corpteacheropinion{
+    height: 200px;
+}
 textarea{
     margin-bottom: 5px;
     padding: 10px;

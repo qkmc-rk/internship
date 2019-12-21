@@ -1,4 +1,4 @@
 let config = {
-    ip:"http://10.255.251.34",
+    ip:"http://nadev.xyz",
     port:8080
 }

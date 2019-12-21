@@ -131,3 +131,95 @@ body{
     display: flex;
     align-items: center;
 }
+.psw-btn{
+    margin-left: 20px;
+    border: none;
+    background-color: #07C160;
+    color: white;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+input[name="pswchange"]{
+    border-radius: 3px;
+    padding: 2px;
+    border:1px solid #d3d3d3;
+}
+.position-binding{
+    background-color: #aa9be0;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+.changedetails{
+    user-select: none;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #47c1bc;
+    color: white;
+    padding: 5px;
+    float: right;
+}
+.changecontent{
+    display: none;
+    box-shadow: 0 0 3px 2px #f1f1f1;
+    border-radius: 5px;
+    /* display: flex; */
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #f1f1f1;
+    position: absolute;
+    right: 20px;
+}
+.changecontent input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    letter-spacing: 1.6px;
+}
+.changetitle{
+    margin-bottom: 5px;
+}
+.details-btn{
+    background-color: #aa9be0;
+    padding: 5px;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.details-window{
+    position: relative;
+}
+.show-text{
+    color: #333 !important;
+}
+.date-submit{
+    border: none;
+    padding: 3px 5px;
+    color: white;
+    border-radius: 3px;
+    background-color: #07C160;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.date-submit:hover{
+    background-color: #06984c;
+}
+.icon-shang{
+    display: inline-block;
+    
+}
+.down{
+    transform: rotate(180deg);
+}
+.up{
+    transform: rotate(0deg);
+}

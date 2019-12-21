@@ -13,8 +13,14 @@ window.onload = ()=>{
                 // console.log(data)
                 const msg = data.data
                 // console.log(msg)
-                gmt_start.value = msg.gmtStart
-                starttime.value = msg.stage1GuideDate
+                if(msg.stage1GuideDate){
+                    var firtime = msg.stage1GuideDate.split(' - ')[0]
+                    var lasttime = msg.stage1GuideDate.split(' - ')[1]
+                }
+                
+                firtimeinput.value = firtime?firtime:""
+                lasttimeinput.value = lasttime?lasttime:""
+                starttime.value = msg.stage1Date
                 method.value = msg.stage1GuideWay
                 summary.value = msg.stage1Summary
 
@@ -50,12 +56,16 @@ window.onload = ()=>{
                 })
 
                 $(".submit").on("click",()=>{
+                    if(!starttime.value){
+                        alert("填写时间为必填项!")
+                        return
+                    }
                     let stage1Summary = summary.value
-                    let stage1GuideDate  = starttime.value ;
+                    let stage1Date  = starttime.value ;
                     // console.log(typeof stage1GuideDate)
                     let stage1GuideWay  = method.value ;
-                    let gmtStart = gmt_start.value;
-                    
+                    // console.log(gmtStart)
+                    let gmtStart = firtimeinput.value+" - "+lasttimeinput.value;
                     if(summary.value.length>1050){
                         alert("字数超过限制,请更改后提交!")
                         return
@@ -65,7 +75,8 @@ window.onload = ()=>{
                         url:`${config.ip}:${config.port}/student/report/stage1`,
                         dataType:"json",
                         data:{
-                            gmtStart:gmtStart,
+                            stage1Date:stage1Date,
+                            stage1GuideDate:gmtStart,
                             stage1Summary:stage1Summary,
                             stage1GuideDate:stage1GuideDate,
                             stage1GuideWay:stage1GuideWay

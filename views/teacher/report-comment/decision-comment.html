@@ -67,13 +67,13 @@
                     <div class="content">
                         <div class="content-name">实习内容</div>
                         <div class="inner-content">
-                            暂无</div>
+                            加载中</div>
                         <!-- <div class="time"><span class="time-text">时间</span><span class="time-inner">2019/10/24</span></div> -->
                     </div>
                     <div class="content">
                         <div class="content-name">自我总结</div>
                         <div class="inner-content">
-                            暂无</div>
+                            加载中</div>
                         <!-- <div class="time"><span class="time-text">时间</span><span class="time-inner">2019/10/24</span></div> -->
                     </div>
             
@@ -104,7 +104,9 @@
         </div> -->
         <div class="content">
             <div class="content-name">实习单位指导教师评语及成绩评定</div>
-            <div class="inner-content"><textarea name="corpTeacherOpinion" id="corpTeacherOpinion" cols="30" rows="10"></textarea>
+            <div class="inner-content">
+                <!-- <textarea name="corpTeacherOpinion" id="corpTeacherOpinion" cols="30" rows="10"></textarea> -->
+                <span id="corpTea-comment">加载中</span>
             </div>
             <div class="inner-content">实习成绩：<span>
                     <select name="corpTeacherGrade" id="corpTeacherGrade" class="rep-garde-select">
@@ -116,15 +118,20 @@
                     </select>
                 </span>
             </div>
-            <div class="timeset">
-                时间<input type="date" id="CTODate" name="CTODate">
+            <div class="time">
+                <!-- 时间<input type="date" id="CTODate" name="CTODate"> -->
+                <span class="time-text">时间</span><span class="time-inner" id="CTODate">暂无</span>
             </div>
         </div>
         <div class="content">
             <div class="content-name">实习单位审核意见</div>
-            <div class="inner-content"><textarea name="corpOpinion" id="corpOpinion" cols="30" rows="10"></textarea></div>
-            <div class="timeset">
-                时间<input type="date" id="CODate" name="CODate">
+            <div class="inner-content">
+                <!-- <textarea name="corpOpinion" id="corpOpinion" cols="30" rows="10"></textarea> -->
+                <span id="corp-comment">加载中</span>
+            </div>
+            <div class="time">
+                <!-- 时间<input type="date" id="CODate" name="CODate"> -->
+                <span class="time-text">时间</span><span class="time-inner" id="CODate">加载中</span>
             </div>
         </div>
 
@@ -137,7 +144,7 @@
                 时间<input type="date" id="TGDate" name="TGDate">
             </div> -->
             <div class="content-name">所在学院指导老师成绩评定</div>
-            <div class="inner-content"><span>
+            <div class="inner-content">实习成绩：<span>
                 <select name="teacherGrade" id="teacherGrade" class="rep-garde-select">
                     <option value="优秀">优秀</option>
                     <option value="良好">良好</option>
@@ -161,8 +168,8 @@
             </div>
         </div> -->
         <div class="content">
-            <div class="content-name">实习单位审核意见</div>
-            <div class="inner-content" id="comprehsvGrade">暂无评价</div>
+            <div class="content-name">综合实习成绩评定</div>
+            <div class="inner-content" id="comprehsvGrade"></div>
             <div class="time"><span class="time-text">时间</span><span class="time-inner" id="CGDate">暂无</span></div>
         </div>
 

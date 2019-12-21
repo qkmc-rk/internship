@@ -5,11 +5,10 @@ body {
     font-size: 35px;
     margin-top: 20px;
     text-align: center;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
 }
 .search-input{
-    /* float: right; */
     position: absolute;
     right: 5px;
     top: 50%;
@@ -18,6 +17,25 @@ body {
     width: 200px;
     vertical-align: middle;
 }
+
+
+
+.filter-box {
+    font-size: 14px;
+    position: absolute;
+    right:20px;
+    top: 100%;
+    transform: translateY(-50%);
+    padding: 5px;
+}
+.filter-box label {
+    margin: 0 5px;
+}
+.filter-box input {
+    vertical-align: middle;
+}
+
+
 .stuList-wrap {
     width: 1200px;
     /* margin: 0 auto; */

@@ -8,6 +8,7 @@
     <script src="/public/js/config.js"></script>
     <link rel="stylesheet" href="../../../public/css/nav.css">
     <script src="../../../public/js/jquery.js"></script>
+    <script src="/public/js/My97DatePicker/WdatePicker.js"></script>
     <link rel="stylesheet" href="../../../public/css/reset.css">
     <script src="../../../public/js/utils.js"></script>
     <link rel="stylesheet" href="/public/pages/student/submit/submit.css">
@@ -41,12 +42,14 @@
         <form action="secSubmit.html" method="post">
                 <div class="name">第二阶段填报报告表</div>
                 <label for="gmt_end">
-                    <div class="title">实习结束时间</div>
-                    <input type="date" id="gmt_end" name="gmt_end">
+                    <div class="title">指导时间段</div>
+                    <!-- <input type="date" id="gmt_end" name="gmt_end"> -->
+                    <input type="text" id="firtimeinput" onClick="WdatePicker({})">至
+                    <input type="text" id="lasttimeinput" onClick="WdatePicker({})">
                 </label>
 
                 <label for="starttime">
-                    <div class="title">指导时间</div>
+                    <div class="title">填写时间</div>
                     <input type="date" id="starttime" name="starttime">
                 </label>
                 <label for="text">

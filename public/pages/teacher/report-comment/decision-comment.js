@@ -3,7 +3,9 @@ $(()=>{
     let stuinfo = getLocalStorage("std-decision-entity")
     let stuNo = stuinfo.stuNo
     // console.log(stuNo)
-    console.log(stuinfo)
+    // console.log(stuinfo)
+
+    //第一次渲染学生信息
     $.ajax({
         type:"GET",
         url:`${config.ip}:${config.port}/teacher/student/${stuNo}`,
@@ -43,8 +45,6 @@ $(()=>{
                 <!-- <div class="time"><span class="time-text">时间</span><span class="time-inner">2019/10/24</span></div> -->
             </div>
         </div>
-
-
             `
             // console.log(stuinfo)
             $(".person-info").html(template)
@@ -52,23 +52,35 @@ $(()=>{
             // console.log(temp_time)
             // console.log(stuinfo)
             //实习单位指导教师评语
-            corpTeacherOpinion.value = stuinfo.corpTeacherOpinion
+            // corpTeacherOpinion.value = stuinfo.corpTeacherOpinion
+            $('#corpTea-comment').text(stuinfo.corpTeacherOpinion?stuinfo.corpTeacherOpinion:"暂无");
             //实习单位指导教师实习成绩
             corpTeacherGrade.value = stuinfo.corpTeacherGrade?stuinfo.corpTeacherGrade:"优秀"
+
             //实习单位指导教师实习成绩时间
-            CTODate.value = stuinfo.ctodate?stuinfo.ctodate:null
+            // CTODate.value = stuinfo.ctodate?stuinfo.ctodate:null
+            $("#CTODate").text(stuinfo.ctodate?stuinfo.ctodate:"暂无");
             //实习单位审核意见
-            corpOpinion.value = stuinfo.corpOpinion
+            // corpOpinion.value = stuinfo.corpOpinion
+            $("#corp-comment").text(stuinfo.corpOpinion?stuinfo.corpOpinion:"暂无");
             //实习单位审核意见时间
-            CODate.value = stuinfo.codate?stuinfo.codate:null
+            // CODate.value = stuinfo.codate?stuinfo.codate:null
+            $("#CODate").text(stuinfo.codate?stuinfo.codate:"暂无")
+
+
             //所在学院指导老师成绩评定
             teacherGrade.value = stuinfo.teacherGrade
             //所在学院指导老师成绩评定时间
             TGDate.value = stuinfo.tgdate?stuinfo.tgdate:null
+
+
+            
             //综合实习成绩评定
             // comprehsvGrade.value = stuinfo.comprehsvGrade
             // console.log(comprehsvGrade)
             comprehsvGrade.innerHTML = stuinfo.comprehsvGrade?stuinfo.comprehsvGrade:"暂无成绩"
+
+
             //综合实习成绩评定时间
             CGDate.innerHTML = stuinfo.cgdate?stuinfo.cgdate:"暂无"
             // CGDate.value = stuinfo.cgdate?stuinfo.cgdate:null
@@ -79,30 +91,32 @@ $(()=>{
         }
     })
 
-
+    //提交
     $(".submit").on("click",function(){
         let options = {
             stuNo:stuinfo.stuNo,
-            corpTeacherOpinion:corpTeacherOpinion.value,
+
+            //-------没必要提交了-------------
+            // corpTeacherOpinion:corpTeacherOpinion.value,
+
             corpTeacherGrade:corpTeacherGrade.value,
             // CTODate:CTODate.value,
-            corpOpinion:corpOpinion.value,
+            // corpOpinion:corpOpinion.value,
             // CODate:CODate.value,
             teacherGrade:teacherGrade.value,
             // TGDate:TGDate.value,
             comprehsvGrade:comprehsvGrade.value,
             // CGDate:CGDate.value,
-            collegePrincipalOpinion:collegePrincipalOpinion.value,
+
+            // collegePrincipalOpinion:collegePrincipalOpinion.value,
+
             // CPODate:CPODate.value,
             id:stuinfo.id
         }
         // console.log(CTODate.value)
-        if(CTODate.value){
-            options.CTODate = CTODate.value
-        }
-        if(CODate.value){
-            options.CODate = CODate.value
-        }
+        // if(CODate.value){
+        //     options.CODate = CODate.value
+        // }
         if(TGDate.value){
             options.TGDate = TGDate.value
         }

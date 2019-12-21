@@ -78,3 +78,6 @@ textarea{
     line-height: 300px;
     user-select: none;
 }
+#firtimeinput,#lasttimeinput{
+    width: 200px;
+}
