@@ -247,8 +247,12 @@ $(()=>{
             },
             data:options,
             success(data){
-                alert("提交成功!")
-                window.location.href = "/teacher"
+                if (data.status == 1){
+                    alert("提交成功!");
+                    window.location.href = "/teacher";
+                } else {
+                    alert("失败!信息：" + data.message);
+                }
             }
         })
     })

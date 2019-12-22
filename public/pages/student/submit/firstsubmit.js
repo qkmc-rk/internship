@@ -56,6 +56,9 @@ window.onload = ()=>{
                 })
 
                 $(".submit").on("click",()=>{
+                    // 为了防止学生重复点击，加载出来之前关闭按钮
+                    $("#firtsubmit").text("提交中,请稍后...");
+                    $("#firtsubmit").attr("disabled","true");
                     if(!starttime.value){
                         alert("填写时间为必填项!")
                         return
@@ -65,10 +68,10 @@ window.onload = ()=>{
                     // console.log(typeof stage1GuideDate)
                     let stage1GuideWay  = method.value ;
                     // console.log(gmtStart)
-                    let gmtStart = firtimeinput.value+" - "+lasttimeinput.value;
-                    if(summary.value.length>1050){
-                        alert("字数超过限制,请更改后提交!")
-                        return
+                    let stage1GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
+                    if(summary.value.length > 1050){
+                        alert("字数超过限制,请更改后提交!");
+                        return;
                     }
                     $.ajax({
                         type:"post",
@@ -76,7 +79,7 @@ window.onload = ()=>{
                         dataType:"json",
                         data:{
                             stage1Date:stage1Date,
-                            stage1GuideDate:gmtStart,
+                            //stage1GuideDate:gmtStart,
                             stage1Summary:stage1Summary,
                             stage1GuideDate:stage1GuideDate,
                             stage1GuideWay:stage1GuideWay
@@ -85,8 +88,12 @@ window.onload = ()=>{
                             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
                         },
                         success:(data)=>{
-                            alert("提交成功!")
-                            window.location.href = "/student"
+                            if (data.status == 1) {
+                                alert("提交成功!" + data.message)
+                                window.location.href = "/student"
+                            }else{
+                                alert(data.message);
+                            }
                         }
                     })
                 })

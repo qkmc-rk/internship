@@ -47,16 +47,19 @@ $(() => {
             <div class="text"><span>实习岗位</span>${std.corpPosition?std.corpPosition:"暂无"}</div>
             <div class="text"><span>实习企业</span>${std.corpName?std.corpName:"暂无"}</div>
             <div class="text"><span>身份证号</span>${std.idCard}</div>
-            <div class="text gmtstart"><span>实习开始时间</span>${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<input id='gmtStart' onclick='WdatePicker()'/>":"<span class='show-text'>未到填写时间</span></div>"}
-            <div class="text gmtend"><span>实习结束时间</span>${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<input id='gmtEnd' onclick='WdatePicker()'/>":"<span class='show-text'>未到填写时间</span></div>"}
-            ${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<button class='date-submit' id='b1'>提交</button>":""}
+            <div class="text"><span>学院</span>学院${std.college}</div>
+            <div class="text"><span>实习开始时间</span>${std.gmtStart?std.gmtStart:"暂无"}</div>
+            <div class="text"><span>实习结束时间</span>${std.gmtEnd?std.gmtEnd:"暂无"}</div>
+            <div class="text gmtstart">
+                <span>实习开始时间</span>${std.identifyFilledFlag == 3 && std.reportFilledFlag == 3?"<input id='gmtStart' onclick='WdatePicker()' readonly /></div>":"<span class='show-text'>未到填写时间</span></div>"}
+            <div class="text gmtend"><span>实习结束时间</span>${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<input id='gmtEnd' onclick='WdatePicker()' readonly /></div>":"<span class='show-text'>未到填写时间</span></div>"}
+            ${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<button class='date-submit' id='b1'>修改实习时间</button>":""}
             <div class="text"><span>修改密码</span><br><input type="password" name="oldpsw" placeholder="旧密码" id="oldpsw"><br><input type="password" name="newpsw" placeholder="新密码" id="newpsw"><button class="psw-btn">修改</button></div>
-            <div class="text">${std.college}</div>
+            
             <div class="text"></div>
             <div class="controls"><button>实习报告表</button><button>实习鉴定表</button></div>`
             $('.student-info').html(stdTemplate)
             // console.log(std)
-
             position.value = std.corpPosition
 
             //---------------请求老师信息---------------------
@@ -125,14 +128,16 @@ $(() => {
         alert("注销成功")
         window.location.href = "/logout"
     })
+
     $('.position-binding').on("click", function () {
         // console.log(111)
         console.log(position.value)
         ajaxByPost('/student/student/position', {
             position: position.value
         }, function (data) {
-            alert("绑定成功!")
-            window.location.reload()
+            alert("绑定成功,请重新登录后查看");
+            sessionStorage.setItem("userInfo","");
+            window.location.href="/logout"
         })
     })
     //--------------修改密码------------------------
@@ -177,6 +182,7 @@ $(() => {
             })
         }
     })
+
     $('body').delegate('.details-btn', 'click', function () {
         var options = {}
         // console.log(std)
@@ -187,8 +193,11 @@ $(() => {
         options.corpTeacherNo = selftno.value
         console.log(options)
         ajaxByPost('/student/selfInfo', options, function (data) {
-            alert("修改成功")
-            window.location.reload()
+            alert("修改成功,重新登录生效")
+            //window.location.reload()
+            //注销登录
+            sessionStorage.setItem("userinfo","")
+            window.location.href = "/logout"
         })
     })
     //--------------进入企业绑定页面-----------------
@@ -199,15 +208,21 @@ $(() => {
 
     //--------------提交实习时间---------------------
     $('body').delegate(".date-submit", "click", function () {
-        // console.log(111)
         var option = {}
-        option.gmtEnd = gmtStart.value
-        option.gmtStart = gmtEnd.value
-        ajaxByPost('/student/student/date',option, function (data) {
+        option.gmtEnd = gmtEnd.value
+        option.gmtStart = gmtStart.value
+        ajaxByPost('/student2/report/date',option, function (data) {
+            console.log("嘿嘿");
+            console.log(data);
             alert("修改成功!")
             window.location.reload()
         })
     })
-
-
+    //清除自动填充，恶心
+    // setTimeout(function removeReadonly() {
+    //     let gmtEnd = $("#gmtEnd");
+    //     let oldpsw = $("#oldpsw");
+    //     gmtEnd.removeAttribute("readonly")
+    //     oldpsw.removeAttribute("readonly");
+    // },1000);
 })

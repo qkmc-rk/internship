@@ -8,6 +8,9 @@ $(() => {
         dataType: "json",
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+            //加载之前要显示正在加载中
+            let tmp = `<tr class="loadingtip"><td class="align-center">正在加载数据中,请稍后...</td></tr>`;
+            $('tbody').html(tmp);
         },
         success(data) {
             stdList = data.data
@@ -80,9 +83,8 @@ $(() => {
                     saveLocalStorage("std-report-entity", data.data)
                     window.location.href = "/teacher-report"
                 } else {
-                    alert("请求失败")
+                    alert("请求失败");
                 }
-
             }
         })
     })
@@ -104,7 +106,7 @@ $(() => {
                     saveLocalStorage("std-decision-entity", data.data)
                     window.location.href = "/teacher-decision"
                 } else {
-                    alert("请求失败")
+                    alert("请求失败");
                 }
             }
         })

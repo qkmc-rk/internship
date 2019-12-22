@@ -57,6 +57,10 @@ window.onload = ()=>{
                 })
                 
                 $(".submit").on("click",()=>{
+                    // 防止用户重复点击
+                    // 为了防止学生重复点击，加载出来之前关闭按钮
+                    $("#secsubmit").text("提交中,请稍后...");
+                    $("#secsubmit").attr("disabled","true");
                     if(!starttime.value){
                         alert("填写时间为必填项!")
                         return
@@ -65,8 +69,8 @@ window.onload = ()=>{
                     let stage2Date   = starttime.value ;
                     let stage2GuideWay  = method.value ;
                     // let gmtStart = 
-                    let gmtEnd = firtimeinput.value+" - "+lasttimeinput.value;
-                    console.log(gmtEnd)
+                    let stage2GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
+                    console.log(stage2GuideDate)
                     // console.log(summary.value.length)
                     if(summary.value.length>1050){
                         alert("字数超过限制,请更改后提交!")
@@ -78,17 +82,20 @@ window.onload = ()=>{
                         dataType:"json",
                         data:{
                             stage2Date :stage2Date ,
-                            stage2GuideDate:gmtEnd,
+                            stage2GuideDate:stage2GuideDate,
                             stage2Summary:stage2_summary,
-                            
                             stage2GuideWay:stage2GuideWay
                         },
                         beforeSend: function(request) {
                             request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
                         },
                         success:(data)=>{
-                            alert("提交成功!")
-                            window.location.href = "/student"
+                            if (data.status == 1) {
+                                alert("提交成功!" + data.message)
+                                window.location.href = "/student"
+                            }else{
+                                alert(data.message);
+                            }
                         }
                     })
                 })

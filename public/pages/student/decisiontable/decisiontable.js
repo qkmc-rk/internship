@@ -35,6 +35,9 @@ $(()=>{
         $('.self-num').html($('#selfSummary').get(0).value.length)
     })
     $('.submit').on("click",()=>{
+        // 为了防止学生重复点击，加载出来之前关闭按钮
+        $("#decisionsubmit").text("提交中,请稍后...");
+        $("#decisionsubmit").attr("disabled","true");
         let pra = practiceContent.value
         let summary = selfSummary.value
         if(pra.length>1200){

@@ -11,7 +11,7 @@ body {
 }
 .wrap {
   width: 980px;
-  height: 625px;
+  height: 800px;
   margin: 45px auto;
   background-color: rgb(95, 185, 212);
   background-color: white;
@@ -166,4 +166,17 @@ input {
   font-size: 14px;
   line-height: 40px;
   display: none;
+}
+.verifycode{
+  width: 100px;
+  margin: auto;
+  display: inline-block;
+}
+.verifycode-tip{
+  font-size: 14px;
+
+}
+.verifycode-tip a {
+  color: #05aa54;
+  text-decoration: none;
 }
