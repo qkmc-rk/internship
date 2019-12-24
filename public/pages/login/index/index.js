@@ -21,9 +21,9 @@ $(function(){
     });
     // 校验登录框
     $(".land-btn").click(()=>{
+        console.log("嘿嘿");
         userCheck();
     });
-
     //刷新验证码的几个事件绑定
     $(".refreshcode").click(()=>{
         $("#verifyimg").attr("src",url + "?" + Math.random()*10000);
@@ -54,11 +54,11 @@ $(function(){
                 useridentity = item.value
             }
         }
-        // console.log(useridentity)
+        console.log("哈哈");
+        console.log(useridentity)
         let useraccount = account.value
         let psw = password.value
         let code = verifycode.value;
-        return;
         if(code == null || code == ""){
             alert("验证码不能为空");
             return
@@ -155,10 +155,10 @@ $(function(){
                     // 请求成功时
                     if(data.status === 1){
                         alert("注册成功！");
-                        window.location.href = "/logout"
+                        toLogin();
                     }else{
-                        alert("注册失败: " + data);
-                        window.location.href = "/logout"
+                        alert("注册失败: " + JSON.stringify(data));
+                        toLogin();
                     }
                 },
                 error:function(err){
@@ -185,15 +185,7 @@ function checkIfFirstLogin(){
                 var rs = JSON.parse(data.data);
                 if(rs.isFirstLogin === true){
                     // 第一次登陆, 需要注册
-                    $("#login-box").attr('style','display:none;');
-                    $("#reg-account").val(account);
-                    //因为切换了视图所以需要重新刷新验证码
-                    var url = `${config.ip}:${config.port}/user/verifycode`;
-                    $(".verifyimg").attr("src",url + "?" + Math.random()*10000);
-                    $("#register-box").removeAttr('style');
-                    setTimeout(()=>{
-                        alert("系统检测您的账号还未登陆过系统，请注册!");
-                    },300)
+                    toRegister();
                 }
             }
         },
@@ -201,4 +193,25 @@ function checkIfFirstLogin(){
             alert('服务器繁忙,请重试!')
         }
     })
+}
+
+function toLogin(){
+
+    $("#register-box").attr('style','display:none;');
+    //因为切换了视图所以需要重新刷新验证码
+    var url = `${config.ip}:${config.port}/user/verifycode`;
+    $(".verifyimg").attr("src",url + "?" + Math.random()*10000);
+    $("#login-box").removeAttr('style');
+}
+function toRegister(){
+    var account = $("#account").val();
+    $("#login-box").attr('style','display:none;');
+    $("#reg-account").val(account);
+    //因为切换了视图所以需要重新刷新验证码
+    var url = `${config.ip}:${config.port}/user/verifycode`;
+    $(".verifyimg").attr("src",url + "?" + Math.random()*10000);
+    $("#register-box").removeAttr('style');
+    setTimeout(()=>{
+        alert("系统检测您的账号还未登陆过系统，请注册!");
+    },300)
 }
