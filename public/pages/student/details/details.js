@@ -22,7 +22,6 @@ $(() => {
         },
         success: function (data) {
             std = data.data
-            console.log(std)
             let stdTemplate = ` <div class="title">学生信息<span class='changedetails'><span class='iconfont icon-shang down' ></span>修改信息</span></div>
             <div class="changecontent">
                 <div class="changetitle">电话</div>
@@ -105,7 +104,7 @@ $(() => {
 
         },
         error: function (err) {
-            console.log(err)
+            alert(err)
         }
     })
 
@@ -131,7 +130,7 @@ $(() => {
 
     $('.position-binding').on("click", function () {
         // console.log(111)
-        console.log(position.value)
+        // console.log(position.value)
         ajaxByPost('/student/student/position', {
             position: position.value
         }, function (data) {
@@ -151,7 +150,6 @@ $(() => {
         ajaxByPost('/student/student/password', options, function (data) {
             // alert("修改成功")
             // console.log(std)
-            console.log(data)
             if (data.status === -1) {
                 alert(data.message)
             } else {
@@ -191,7 +189,6 @@ $(() => {
         options.qq = selfqq.value
         options.age = selfage.value
         options.corpTeacherNo = selftno.value
-        console.log(options)
         ajaxByPost('/student/selfInfo', options, function (data) {
             alert("修改成功,重新登录生效")
             //window.location.reload()
@@ -212,8 +209,6 @@ $(() => {
         option.gmtEnd = gmtEnd.value
         option.gmtStart = gmtStart.value
         ajaxByPost('/student2/report/date',option, function (data) {
-            console.log("嘿嘿");
-            console.log(data);
             alert("修改成功!")
             window.location.reload()
         })

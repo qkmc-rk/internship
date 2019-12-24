@@ -11,7 +11,7 @@ body {
 }
 .wrap {
   width: 980px;
-  height: 800px;
+  height: 900px;
   margin: 45px auto;
   background-color: rgb(95, 185, 212);
   background-color: white;
@@ -137,6 +137,21 @@ input {
     box-sizing: border-box;
 }
 .land-btn {
+  transition: 0.3s;
+  display: block;
+  box-sizing: content-box;
+  padding: 10px 100px;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 24px;
+  border-radius: 8px;
+  color: white;
+  background-color: #07c160;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.reg-land-btn{
   transition: 0.3s;
   display: block;
   box-sizing: content-box;

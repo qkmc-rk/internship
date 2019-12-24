@@ -66,7 +66,7 @@ $(()=>{
             $(".window").html(template)
         },
         error:function(err){
-            console.log(err)
+            alert(err)
         }
     })
 
@@ -87,7 +87,7 @@ $(()=>{
 
             },
             error(err){
-                console.log(err)
+                alert(err)
             }
         })
     })

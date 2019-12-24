@@ -42,7 +42,6 @@ $(()=>{
                     // console.log(id)
                     option.id = id
                 }
-                console.log(option)
                 ajaxByPost('/student/student/corp',option,function(){
                     alert("提交成功!")
                     // window.location.href = "/student"
@@ -56,7 +55,6 @@ $(()=>{
     })
     window.app = app
     ajaxByGet('/student/student/corp',function(data){
-        console.log(data.data);
         if(!data.data.isCorpChecked){
             alert("该企业未核准!")
         }else{
