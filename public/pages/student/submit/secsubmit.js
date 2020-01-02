@@ -63,7 +63,9 @@ window.onload = ()=>{
                     $("#secsubmit").attr("disabled","true");
                     if(!starttime.value){
                         alert("填写时间为必填项!")
-                        return
+                        $("#secsubmit").removeAttr("disabled");
+                        $("#secsubmit").text("提交");
+                        return;
                     }
                     let stage2_summary = summary.value
                     let stage2Date   = starttime.value ;
@@ -73,7 +75,9 @@ window.onload = ()=>{
                     // console.log(summary.value.length)
                     if(summary.value.length>1050){
                         alert("字数超过限制,请更改后提交!")
-                        return
+                        $("#secsubmit").removeAttr("disabled");
+                        $("#secsubmit").text("提交");
+                        return;
                     }
                     $.ajax({
                         type:"post",
@@ -91,9 +95,13 @@ window.onload = ()=>{
                         success:(data)=>{
                             if (data.status == 1) {
                                 alert("提交成功!" + data.message)
+                                $("#secsubmit").removeAttr("disabled");
+                                $("#secsubmit").text("提交");
                                 window.location.href = "/student"
                             }else{
                                 alert(data.message);
+                                $("#secsubmit").removeAttr("disabled");
+                                $("#secsubmit").text("提交");
                             }
                         }
                     })

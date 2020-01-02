@@ -24,5 +24,5 @@ app.use('/node_modules/',express.static('./node_modules/'))
 app.use(router)
 
 app.listen(3000,function(){
-    console.log("server is running...")
+    console.log("服务已启动,访问[IP]:[3000]...")
 })

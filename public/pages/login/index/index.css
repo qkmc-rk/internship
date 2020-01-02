@@ -195,3 +195,12 @@ input {
   color: #05aa54;
   text-decoration: none;
 }
+.notify{
+  margin-left: 1px;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  margin-top:1px;
+  margin-bottom:auto;
+  border: dashed 1px red;
+}

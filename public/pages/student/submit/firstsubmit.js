@@ -61,7 +61,9 @@ window.onload = ()=>{
                     $("#firtsubmit").attr("disabled","true");
                     if(!starttime.value){
                         alert("填写时间为必填项!")
-                        return
+                        $("#firtsubmit").removeAttr("disabled");
+                        $("#firtsubmit").text("提交");
+                        return;
                     }
                     let stage1Summary = summary.value
                     let stage1Date  = starttime.value ;
@@ -71,6 +73,8 @@ window.onload = ()=>{
                     let stage1GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
                     if(summary.value.length > 1050){
                         alert("字数超过限制,请更改后提交!");
+                        $("#firtsubmit").removeAttr("disabled");
+                        $("#firtsubmit").text("提交");
                         return;
                     }
                     $.ajax({
@@ -93,6 +97,8 @@ window.onload = ()=>{
                                 window.location.href = "/student"
                             }else{
                                 alert(data.message);
+                                $("#firtsubmit").removeAttr("disabled");
+                                $("#firtsubmit").text("提交");
                             }
                         }
                     })
