@@ -1,4 +1,4 @@
 let config = {
-    ip:"http://127.0.0.1",
-    port:8889
+    ip:"http://sx.cdcas.edu.cn",
+    port:8890
 }
