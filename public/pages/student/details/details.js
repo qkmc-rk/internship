@@ -31,7 +31,7 @@ $(() => {
                 <div class="changetitle">QQ</div>
                 <input type="text" placeholder="QQ" name="selfqq" id="selfqq" value="${std.qq}"/>
                 <div class="changetitle">年龄</div>
-                <input type="text" placeholder="年龄" name="selfage" id="selfage" value="${std.age}"/>
+                <input type="number" placeholder="年龄" name="selfage" id="selfage" value="${std.age}"/>
                 <div class="changetitle">校外导师工号</div>
                 <input type="text" placeholder="校外导师工号" name="selftno" id="selftno" value="${std.corpTeacherNo}" />
                 <button class="details-btn">修改</button>

@@ -204,3 +204,8 @@ input {
   margin-bottom:auto;
   border: dashed 1px red;
 }
+.is_display {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+}
