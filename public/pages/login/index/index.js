@@ -21,7 +21,6 @@ $(function(){
     });
     // 校验登录框
     $(".land-btn").click(()=>{
-        console.log("嘿嘿");
         userCheck();
     });
     //刷新验证码的几个事件绑定
@@ -54,7 +53,6 @@ $(function(){
                 useridentity = item.value
             }
         }
-        console.log("哈哈");
         console.log(useridentity)
         let useraccount = account.value
         let psw = password.value
