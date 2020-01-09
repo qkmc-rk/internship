@@ -1,10 +1,7 @@
 $(function(){
     document.onselectstart = function(){return false}
     var radio = document.getElementsByName("identity")
-    // console.log(111)
-    // console.log(IEVersion())
     let useridentity = null;
-    // console.log(BrowserType())
     if(BrowserType()!=='Edge' && BrowserType()!=='Chrome'){
         alert("您现在使用的浏览器不完全兼容javascrpt ES6特性,建议更换至谷歌浏览器或Edge浏览器")
     }
@@ -65,16 +62,7 @@ $(function(){
         let loginType = useridentity;
         if(!loginType){
             alert("请选择身份!")
-        }else if(!$($inputs[0]).val()){
-            $($warnWord[0]).css("display", "block");
-        }else if(!$($inputs[1]).val()){
-            $($warnWord[1]).css("display", "block");
         }else{
-            $($warnWord[0]).css("display", "none");
-            $($warnWord[1]).css("display", "none");
-            // console.log(useraccount)
-            // console.log(psw)
-            // console.log(loginType)
             $.ajax({
                 type:"POST",
                 url:`${config.ip}:${config.port}/user/login`,
