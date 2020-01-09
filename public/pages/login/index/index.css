@@ -11,7 +11,7 @@ body {
 }
 .wrap {
   width: 980px;
-  height: 625px;
+  height: 900px;
   margin: 45px auto;
   background-color: rgb(95, 185, 212);
   background-color: white;
@@ -151,6 +151,21 @@ input {
   outline: none;
   cursor: pointer;
 }
+.reg-land-btn{
+  transition: 0.3s;
+  display: block;
+  box-sizing: content-box;
+  padding: 10px 100px;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 24px;
+  border-radius: 8px;
+  color: white;
+  background-color: #07c160;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 .land-btn:hover {
   color: #f1f1f1;
   background-color: #05aa54;
@@ -166,4 +181,31 @@ input {
   font-size: 14px;
   line-height: 40px;
   display: none;
+}
+.verifycode{
+  width: 100px;
+  margin: auto;
+  display: inline-block;
+}
+.verifycode-tip{
+  font-size: 14px;
+
+}
+.verifycode-tip a {
+  color: #05aa54;
+  text-decoration: none;
+}
+.notify{
+  margin-left: 1px;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  margin-top:1px;
+  margin-bottom:auto;
+  border: dashed 1px red;
+}
+.is_display {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
 }

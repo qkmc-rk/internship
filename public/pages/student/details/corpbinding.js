@@ -42,7 +42,6 @@ $(()=>{
                     // console.log(id)
                     option.id = id
                 }
-                console.log(option)
                 ajaxByPost('/student/student/corp',option,function(){
                     alert("提交成功!")
                     // window.location.href = "/student"
@@ -58,6 +57,8 @@ $(()=>{
     ajaxByGet('/student/student/corp',function(data){
         if(!data.data.isCorpChecked){
             alert("该企业未核准!")
+        }else{
+            alert("企业已经核准，修改无效！");
         }
         id = data.data.id
         // console.log(data)
@@ -76,7 +77,5 @@ $(()=>{
         app.form.registerCapita = info.registerCapita
         app.form.startBusiness = info.startBusiness
         app.form.type = info.type
-
-
     })
 })

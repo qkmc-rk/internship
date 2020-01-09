@@ -5,6 +5,13 @@ var router = express.Router()
 router.get('/login',function(req,res){
     res.render('./login/index.html')
 })
+//修改密码
+router.get('/changepassword',function(req,res){
+    res.render('./changepassword/index.html')
+})
+router.get('/',function(req,res){
+    res.render('./login/index.html')
+})
 //登录到学生信息页面
 router.get('/student',function(req,res){
     

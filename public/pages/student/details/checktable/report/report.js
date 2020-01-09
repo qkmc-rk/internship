@@ -78,11 +78,11 @@ $(()=>{
                 let msg = data.data
                 let url = `${config.ip}:${config.port}/`+msg
                 window.location.href = url
-                console.log(url)
+                // console.log(url)
 
             },
             error(err){
-                console.log(err)
+                // console.log(err)
             }
         })
     })
