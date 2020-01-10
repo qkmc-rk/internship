@@ -37,38 +37,44 @@ $(()=>{
         $('.self-num').html($('#selfSummary').get(0).value.length)
     })
     $('.submit').on("click",()=>{
-        // 为了防止学生重复点击，加载出来之前关闭按钮
-        $("#decisionsubmit").text("提交中,请稍后...");
-        $("#decisionsubmit").attr("disabled","true");
-        let pra = practiceContent.value
-        let summary = selfSummary.value
-        if(pra.length>1200){
-            layer.msg('实习内容长度超过限制,请修改后提交!')
-            return;
-        }
-        if(summary.length>1200){
-            layer.msg('实习自我总结长度超过限制,请修改后提交!')
-            return;
-        }
-        $.ajax({
-            type:"post",
-            url:`${config.ip}:${config.port}/student/identify`,
-            dataType:"json",
-            data:{
-                practiceContent:pra,
-                selfSummary:summary,
-                corpOpinion:corpopinion.value,
-                corpTeacherOpinion:corpteacheropinion.value
-            },
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
-            },
-            success:function(){
-                // if()
-                layer.msg("提交成功!")
-                setTimeout(()=>{
-                    window.location.href = "/student"
-                },1500)
+        layer.msg('你确定提交吗？', {
+            time: 0 //不自动关闭
+            , btn: ['提交', '取消']
+            , yes: function (index) {
+                // 为了防止学生重复点击，加载出来之前关闭按钮
+                $("#decisionsubmit").text("提交中,请稍后...");
+                $("#decisionsubmit").attr("disabled","true");
+                let pra = practiceContent.value
+                let summary = selfSummary.value
+                if(pra.length>1200){
+                    layer.msg('实习内容长度超过限制,请修改后提交!')
+                    return;
+                }
+                if(summary.length>1200){
+                    layer.msg('实习自我总结长度超过限制,请修改后提交!')
+                    return;
+                }
+                $.ajax({
+                    type:"post",
+                    url:`${config.ip}:${config.port}/student/identify`,
+                    dataType:"json",
+                    data:{
+                        practiceContent:pra,
+                        selfSummary:summary,
+                        corpOpinion:corpopinion.value,
+                        corpTeacherOpinion:corpteacheropinion.value
+                    },
+                    beforeSend: function(request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+                    },
+                    success:function(){
+                        // if()
+                        layer.msg("提交成功!")
+                        setTimeout(()=>{
+                            window.location.href = "/student"
+                        },1500)
+                    }
+                })
             }
         })
     })

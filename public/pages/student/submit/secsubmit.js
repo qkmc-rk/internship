@@ -57,60 +57,64 @@ window.onload = ()=>{
                 })
                 
                 $(".submit").on("click",()=>{
-                    // 防止用户重复点击
-                    // 为了防止学生重复点击，加载出来之前关闭按钮
-                    $("#secsubmit").text("提交中,请稍后...");
-                    $("#secsubmit").attr("disabled","true");
-                    if(!starttime.value){
-                        layer.msg("填写时间为必填项!")
-                        $("#secsubmit").removeAttr("disabled");
-                        $("#secsubmit").text("提交");
-                        return;
-                    }
-                    let stage2_summary = summary.value
-                    let stage2Date   = starttime.value ;
-                    let stage2GuideWay  = method.value ;
-                    // let gmtStart = 
-                    let stage2GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
-                    // console.log(summary.value.length)
-                    if(summary.value.length>1050){
-                        layer.msg("字数超过限制,请更改后提交!")
-                        $("#secsubmit").removeAttr("disabled");
-                        $("#secsubmit").text("提交");
-                        return;
-                    }
-                    $.ajax({
-                        type:"post",
-                        url:`${config.ip}:${config.port}/student/report/stage2`,
-                        dataType:"json",
-                        data:{
-                            stage2Date :stage2Date ,
-                            stage2GuideDate:stage2GuideDate,
-                            stage2Summary:stage2_summary,
-                            stage2GuideWay:stage2GuideWay
-                        },
-                        beforeSend: function(request) {
-                            request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
-                        },
-                        success:(data)=>{
-                            if (data.status == 1) {
-                                layer.msg("提交成功!" + data.message)
+                    layer.msg('你确定提交吗？', {
+                        time: 0 //不自动关闭
+                        , btn: ['提交', '取消']
+                        , yes: function (index) {
+                            // 防止用户重复点击
+                            // 为了防止学生重复点击，加载出来之前关闭按钮
+                            $("#secsubmit").text("提交中,请稍后...");
+                            $("#secsubmit").attr("disabled","true");
+                            if(!starttime.value){
+                                layer.msg("填写时间为必填项!")
                                 $("#secsubmit").removeAttr("disabled");
                                 $("#secsubmit").text("提交");
-                                setTimeout(()=>{
-                                    window.location.href = "/student"
-                                },1200)
-                            }else{
-                                layer.msg(data.message);
-                                $("#secsubmit").removeAttr("disabled");
-                                $("#secsubmit").text("提交");
+                                return;
                             }
+                            let stage2_summary = summary.value
+                            let stage2Date   = starttime.value ;
+                            let stage2GuideWay  = method.value ;
+                            // let gmtStart =
+                            let stage2GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
+                            // console.log(summary.value.length)
+                            if(summary.value.length>1050){
+                                layer.msg("字数超过限制,请更改后提交!")
+                                $("#secsubmit").removeAttr("disabled");
+                                $("#secsubmit").text("提交");
+                                return;
+                            }
+                            $.ajax({
+                                type:"post",
+                                url:`${config.ip}:${config.port}/student/report/stage2`,
+                                dataType:"json",
+                                data:{
+                                    stage2Date :stage2Date ,
+                                    stage2GuideDate:stage2GuideDate,
+                                    stage2Summary:stage2_summary,
+                                    stage2GuideWay:stage2GuideWay
+                                },
+                                beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization", sessionStorage.getItem("userinfo"));
+                                },
+                                success:(data)=>{
+                                    if (data.status == 1) {
+                                        layer.msg("提交成功!" + data.message)
+                                        $("#secsubmit").removeAttr("disabled");
+                                        $("#secsubmit").text("提交");
+                                        setTimeout(()=>{
+                                            window.location.href = "/student"
+                                        },1200)
+                                    }else{
+                                        layer.msg(data.message);
+                                        $("#secsubmit").removeAttr("disabled");
+                                        $("#secsubmit").text("提交");
+                                    }
+                                }
+                            })
                         }
                     })
-                })
-
+                });
             }
-            
         },
         error(){}
     })
