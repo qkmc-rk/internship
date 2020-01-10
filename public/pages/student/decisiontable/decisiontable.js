@@ -3,9 +3,11 @@ $(()=>{
     redirectTo(document.getElementsByClassName("item")[1].getElementsByTagName("li")[0],"/student/first")
     redirectTo(document.getElementsByClassName("item")[1].getElementsByTagName("li")[1],"/student/twice")
     $('.logout').on("click",()=>{
-        alert("注销成功")
-        sessionStorage.setItem("userinfo","")
-        window.location.href = "/logout"
+        layer.msg("注销成功")
+        setTimeout(()=>{
+            sessionStorage.setItem("userinfo","")
+            window.location.href = "/logout"
+        },2000)
     })
     $.ajax({
         type:"get",
@@ -25,7 +27,7 @@ $(()=>{
                 $('.self-num').html(selfSummary.value.length)
             },
             error:(err)=>{
-                alert("服务器繁忙,请重试")
+                layer.msg("服务器繁忙,请重试")
             }
     })
     $('#practiceContent').on("input",()=>{
@@ -41,12 +43,12 @@ $(()=>{
         let pra = practiceContent.value
         let summary = selfSummary.value
         if(pra.length>1200){
-            alert('实习内容长度超过限制,请修改后提交!')
-            return
+            layer.msg('实习内容长度超过限制,请修改后提交!')
+            return;
         }
         if(summary.length>1200){
-            alert('实习自我总结长度超过限制,请修改后提交!')
-            return
+            layer.msg('实习自我总结长度超过限制,请修改后提交!')
+            return;
         }
         $.ajax({
             type:"post",
@@ -63,8 +65,10 @@ $(()=>{
             },
             success:function(){
                 // if()
-                alert("提交成功!")
-                window.location.href = "/student"
+                layer.msg("提交成功!")
+                setTimeout(()=>{
+                    window.location.href = "/student"
+                },1500)
             }
         })
     })

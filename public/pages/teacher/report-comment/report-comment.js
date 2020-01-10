@@ -248,10 +248,12 @@ $(()=>{
             data:options,
             success(data){
                 if (data.status == 1){
-                    alert("提交成功!");
-                    window.location.href = "/teacher";
+                    layer.msg("提交成功!");
+                    setTimeout(()=>{
+                        window.location.href = "/teacher";
+                    },1000);
                 } else {
-                    alert("失败!信息：" + data.message);
+                    layer.msg("失败!详细信息参考：" + data.message);
                 }
             }
         })

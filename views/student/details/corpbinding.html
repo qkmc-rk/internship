@@ -11,6 +11,7 @@
     <script src="/public/js/vue.js"></script>
     <script src="/public/js/config.js"></script>
     <script src="/public/js/utils.js"></script>
+    <script src="/public/js/layer/layer.js"></script>
     
 </head>
 <body >
@@ -42,8 +43,9 @@
             </div>
 
             <div class="input-line">
-                <span class="title required">企业注册号</span>
+                <span class="title">企业注册号</span>
                 <input type="text" class="corp-input" v-model="form.regCode">
+                <span style="display:block;color: darkred;">若企业含有注册号，则必填</span>
             </div>
 
             <div class="input-line">

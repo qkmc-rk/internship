@@ -27,25 +27,27 @@ $(()=>{
                 let option = this.form
                 
                 if(!this.form.corpName){
-                    alert("请输入企业名称!")
-                    return
+                    layer.msg("请输入企业名称")
+                    return;
                 }
-                if(!this.form.regCode){
-                    alert("请输入企业注册号")
-                    return
-                }
+                // if(!this.form.regCode){
+                //     layer.msg("请输入企业注册号")
+                //     return;
+                // }
                 if(!this.form.legalPerson){
-                    alert("请输入法人项")
-                    return
+                    layer.msg("请输入法人项")
+                    return;
                 }
                 if(id){
                     // console.log(id)
                     option.id = id
                 }
                 ajaxByPost('/student/student/corp',option,function(){
-                    alert("提交成功!")
-                    // window.location.href = "/student"
-                    window.location.reload()
+                    layer.msg("提交成功!")
+                    setTimeout(()=>{
+                        // window.location.href = "/student"
+                        window.location.reload()
+                    },1000);
                 })
             },
             btnreturn(){
@@ -56,9 +58,9 @@ $(()=>{
     window.app = app
     ajaxByGet('/student/student/corp',function(data){
         if(!data.data.isCorpChecked){
-            alert("该企业未核准!")
+            layer.msg("企业信息已成功提交，在未被老师锁定之前您仍旧可以修改！")
         }else{
-            alert("企业已经核准，修改无效！");
+            layer.msg("企业已经被老师锁定，修改无效！");
         }
         id = data.data.id
         // console.log(data)

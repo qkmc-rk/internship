@@ -32,7 +32,7 @@ window.onload = ()=>{
                 })
             },
             error:(err)=>{
-                alert("服务器繁忙,请重试")
+                layer.msg("服务器繁忙,请重试")
             }
     })
 
@@ -62,7 +62,7 @@ window.onload = ()=>{
                     $("#secsubmit").text("提交中,请稍后...");
                     $("#secsubmit").attr("disabled","true");
                     if(!starttime.value){
-                        alert("填写时间为必填项!")
+                        layer.msg("填写时间为必填项!")
                         $("#secsubmit").removeAttr("disabled");
                         $("#secsubmit").text("提交");
                         return;
@@ -74,7 +74,7 @@ window.onload = ()=>{
                     let stage2GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
                     // console.log(summary.value.length)
                     if(summary.value.length>1050){
-                        alert("字数超过限制,请更改后提交!")
+                        layer.msg("字数超过限制,请更改后提交!")
                         $("#secsubmit").removeAttr("disabled");
                         $("#secsubmit").text("提交");
                         return;
@@ -94,12 +94,14 @@ window.onload = ()=>{
                         },
                         success:(data)=>{
                             if (data.status == 1) {
-                                alert("提交成功!" + data.message)
+                                layer.msg("提交成功!" + data.message)
                                 $("#secsubmit").removeAttr("disabled");
                                 $("#secsubmit").text("提交");
-                                window.location.href = "/student"
+                                setTimeout(()=>{
+                                    window.location.href = "/student"
+                                },1200)
                             }else{
-                                alert(data.message);
+                                layer.msg(data.message);
                                 $("#secsubmit").removeAttr("disabled");
                                 $("#secsubmit").text("提交");
                             }
@@ -116,10 +118,10 @@ window.onload = ()=>{
 
 
     $('.logout').on("click",()=>{
-        alert("注销成功")
+        alert("注销")
         sessionStorage.setItem("userinfo","")
-        window.location.href = "/logout"
+        setTimeout(()=>{
+            window.location.href = "/logout"
+        },1000)
     })
-
-    
 }

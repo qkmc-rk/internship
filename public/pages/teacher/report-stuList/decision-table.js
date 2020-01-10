@@ -60,7 +60,7 @@ $(() => {
             $('tbody').html(template)
         },
         error(err) {
-            alert("服务器繁忙,请重试")
+            layer.msg("服务器繁忙,请重试")
         }
     })
 
@@ -348,8 +348,7 @@ $(() => {
 
 
     $('body').delegate(".uncheck-btn", "click", function () {
-        alert("学生还未填写,无法评价!")
+        layer.msg("学生还未填写,无法评价!")
         return
     })
-
 })

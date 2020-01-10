@@ -10,11 +10,13 @@ $(()=>{
     })
     $('.return').click(function(){
         window.history.back();
-        return false
+        return false;
     })
     $('.logout').on("click",()=>{
-        alert("注销成功")
+        layer.msg("注销成功");
         sessionStorage.setItem("userinfo","")
-        window.location.href = "/logout"
+        setTimeout(()=>{
+            window.location.href = "/logout"
+        },1000)
     })
 })

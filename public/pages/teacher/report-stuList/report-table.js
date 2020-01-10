@@ -339,8 +339,8 @@ $(() => {
     })
 
     $('body').delegate(".uncheck-btn", "click", function () {
-        alert("学生还未填写,无法评价!")
-        return
+        layer.msg("学生还未填写,无法评价!");
+        return;
     })
 
 

@@ -25,13 +25,11 @@ window.onload = ()=>{
                 summary.value = msg.stage1Summary
 
                 $('.limit').each((index,item)=>{
-
                     $(item).find('.summary-num').html($(item).siblings().get(1).value.length)
-
                 })
             },
             error:(err)=>{
-                alert("服务器繁忙,请重试")
+                layer.msg("服务器繁忙,请重试")
             }
     })
 
@@ -60,7 +58,7 @@ window.onload = ()=>{
                     $("#firtsubmit").text("提交中,请稍后...");
                     $("#firtsubmit").attr("disabled","true");
                     if(!starttime.value){
-                        alert("填写时间为必填项!")
+                        layer.msg("填写时间为必填项!")
                         $("#firtsubmit").removeAttr("disabled");
                         $("#firtsubmit").text("提交");
                         return;
@@ -72,7 +70,7 @@ window.onload = ()=>{
                     // console.log(gmtStart)
                     let stage1GuideDate = firtimeinput.value+" - "+lasttimeinput.value;
                     if(summary.value.length > 1050){
-                        alert("字数超过限制,请更改后提交!");
+                        layer.msg("字数超过限制,请更改后提交!");
                         $("#firtsubmit").removeAttr("disabled");
                         $("#firtsubmit").text("提交");
                         return;
@@ -93,10 +91,12 @@ window.onload = ()=>{
                         },
                         success:(data)=>{
                             if (data.status == 1) {
-                                alert("提交成功!" + data.message)
-                                window.location.href = "/student"
+                                layer.msg("提交成功!" + data.message)
+                                setTimeout(()=>{
+                                    window.location.href = "/student"
+                                },1000)
                             }else{
-                                alert(data.message);
+                                layer.msg(data.message);
                                 $("#firtsubmit").removeAttr("disabled");
                                 $("#firtsubmit").text("提交");
                             }
@@ -116,11 +116,10 @@ window.onload = ()=>{
 
 
     $('.logout').on("click",()=>{
-        alert("注销成功")
-        sessionStorage.setItem("userinfo","")
-        window.location.href = "/logout"
+        layer.msg("注销");
+        setTimeout(()=>{
+            sessionStorage.setItem("userinfo","")
+            window.location.href = "/logout"
+        },1000)
     })
-
-
-    
 }

@@ -50,9 +50,14 @@ $(() => {
             <div class="text"><span>实习开始时间</span>${std.gmtStart?std.gmtStart:"暂无"}</div>
             <div class="text"><span>实习结束时间</span>${std.gmtEnd?std.gmtEnd:"暂无"}</div>
             <div class="text gmtstart">
-                <span>实习开始时间</span>${std.identifyFilledFlag == 3 && std.reportFilledFlag == 3?"<input id='gmtStart' onclick='WdatePicker()' readonly /></div>":"<span class='show-text'>未到填写时间</span></div>"}
-            <div class="text gmtend"><span>实习结束时间</span>${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<input id='gmtEnd' onclick='WdatePicker()' readonly /></div>":"<span class='show-text'>未到填写时间</span></div>"}
-            ${std.identifyFilledFlag==3&&std.reportFilledFlag==3?"<button class='date-submit' id='b1'>修改实习时间</button>":""}
+                <span>实习开始时间</span>
+                <input id='gmtStart' onclick='WdatePicker()' readonly />
+            </div>
+            <div class="text gmtend">
+                <span>实习结束时间</span>
+                <input id='gmtEnd' onclick='WdatePicker()' readonly />
+            </div>
+            <button class='date-submit' id='b1'>修改实习时间</button>
             <div class="text"><span>修改密码</span><br><input type="password" name="oldpsw" placeholder="旧密码" id="oldpsw"><br><input type="password" name="newpsw" placeholder="新密码" id="newpsw"><button class="psw-btn">修改</button></div>
             
             <div class="text"></div>
@@ -104,7 +109,7 @@ $(() => {
 
         },
         error: function (err) {
-            alert(err)
+            layer.msg(err)
         }
     })
 
@@ -124,8 +129,11 @@ $(() => {
     })
 
     $('.logout').on("click", () => {
-        alert("注销成功")
-        window.location.href = "/logout"
+        layer.msg("注销");
+        setTimeout(()=>{
+            window.location.href = "/logout";
+        },1000)
+
     })
 
     $('.position-binding').on("click", function () {
@@ -134,9 +142,12 @@ $(() => {
         ajaxByPost('/student/student/position', {
             position: position.value
         }, function (data) {
-            alert("绑定成功,请重新登录后查看");
-            sessionStorage.setItem("userInfo","");
-            window.location.href="/logout"
+            layer.msg("绑定成功,请重新登录后查看");
+            setTimeout(()=>{
+                sessionStorage.setItem("userInfo","");
+                window.location.href="/logout"
+            },1000)
+
         })
     })
     //--------------修改密码------------------------
@@ -151,10 +162,12 @@ $(() => {
             // alert("修改成功")
             // console.log(std)
             if (data.status === -1) {
-                alert(data.message)
+                layer.msg(data.message)
             } else {
-                alert("修改成功")
-                window.location.reload()
+                layer.msg("修改成功");
+                setTimeout(()=>{
+                    window.location.reload()
+                },1000)
             }
             // window.location.reload()
         })
@@ -190,11 +203,14 @@ $(() => {
         options.age = selfage.value
         options.corpTeacherNo = selftno.value
         ajaxByPost('/student/selfInfo', options, function (data) {
-            alert("修改成功,重新登录生效")
+            layer.msg("修改成功,重新登录生效，2秒后即将跳转登录...")
             //window.location.reload()
             //注销登录
             sessionStorage.setItem("userinfo","")
-            window.location.href = "/logout"
+            setTimeout(()=>{
+                window.location.href = "/logout"
+            },2000)
+
         })
     })
     //--------------进入企业绑定页面-----------------
@@ -209,8 +225,10 @@ $(() => {
         option.gmtEnd = gmtEnd.value
         option.gmtStart = gmtStart.value
         ajaxByPost('/student2/report/date',option, function (data) {
-            alert("修改成功!")
-            window.location.reload()
+            layer.msg("修改成功!");
+            setTimeout(()=>{
+                window.location.reload();
+            },2000)
         })
     })
     //清除自动填充，恶心

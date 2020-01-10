@@ -6,7 +6,7 @@ $(function(){
     let useridentity = null;
     // console.log(BrowserType())
     if(BrowserType()!=='Edge' && BrowserType()!=='Chrome'){
-        alert("您现在使用的浏览器不完全兼容javascrpt ES6特性,建议更换至谷歌浏览器或Edge浏览器")
+        layer.alert("您现在使用的浏览器可能不能正确响应一些操作，若存在操作问题,请先尝试使用以下某一款浏览器:<a href='https://www.google.cn/chrome/'>谷歌浏览器</a>、<a href='https://browser.360.cn/ee/'>360浏览器极速模式</a>、<a href='https://www.microsoft.com/zh-cn/windows/microsoft-edge/'>win10 edge最新版浏览器</a>");
     }
     // 在这个位置加载验证码
     const url = `${config.ip}:${config.port}/user/verifycode`;
@@ -58,7 +58,7 @@ $(function(){
         let psw = password.value
         let code = verifycode.value;
         if(code == null || code == ""){
-            alert("验证码不能为空");
+            layer.msg("验证码不能为空");
             return
         }
         console.log(code);
@@ -96,13 +96,13 @@ $(function(){
                              window.location.href = "/teacher"
                          }
                      }else{
-                         alert(data.message);
+                         layer.msg(data.message);
                          //刷新验证码
                          $("#verifyimg").attr("src",url);
                      }
                 },
                 error:function(err){
-                    alert('服务器繁忙,请重试!')
+                    layer.msg('服务器繁忙,请重试!')
                 }
             })
         }
@@ -121,21 +121,21 @@ $(function(){
         var code = $("#reg-verifycode").val();
         let loginType = useridentity;
         if(idcard === ''){
-            alert("身份证号码信息未填写!");
+            layer.msg("身份证号码信息未填写!");
             return;
         }else if(!loginType){
-            alert("请选择身份!")
+            layer.msg("请选择身份!")
             return;
         }else if(password === '' || repassword === ''){
-            alert("请输入密码!")
+            layer.msg("请输入密码!")
             return;
         }else if(password !== repassword){
-            alert("密码不一致!")
+            layer.msg("密码不一致!")
             return;
         }else{
             if(code == null || code == ""){
-                alert("验证码不能为空");
-                return
+                layer.msg("验证码不能为空");
+                return;
             }
             // 注册
             $.ajax({
@@ -152,15 +152,15 @@ $(function(){
                 success:function(data){
                     // 请求成功时
                     if(data.status === 1){
-                        alert("注册成功！");
+                        layer.alert("注册成功！");
                         toLogin();
                     }else{
-                        alert("注册失败: " + JSON.stringify(data));
+                        layer.alert("注册失败: " + JSON.stringify(data));
                         toLogin();
                     }
                 },
                 error:function(err){
-                    alert('服务器繁忙,请重试!')
+                    layer.msg('服务器繁忙,请重试!')
                 }
             })
         }
@@ -188,7 +188,7 @@ function checkIfFirstLogin(){
             }
         },
         error:function(err){
-            alert('服务器繁忙,请重试!')
+            layer.msg('服务器繁忙,请重试!')
         }
     })
 }
@@ -210,6 +210,6 @@ function toRegister(){
     $(".verifyimg").attr("src",url + "?" + Math.random()*10000);
     $("#register-box").removeAttr('style');
     setTimeout(()=>{
-        alert("系统检测您的账号还未登陆过系统，请注册!");
+        layer.alert("系统检测您的账号还未登陆过系统，请注册!");
     },300)
 }

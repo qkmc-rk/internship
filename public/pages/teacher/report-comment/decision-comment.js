@@ -135,13 +135,15 @@ $(()=>{
             },
             data:options,
             success(data){
-                alert("提交成功!")
-                window.location.href = "/teacher"
+                layer.msg("提交成功!")
+                setTimeout(()=>{
+                    window.location.href = "/teacher";
+                },1000);
+
             },
             error(){
-                alert("服务器错误,请重试")
+                layer.msg("服务器错误,请重试")
             }
         })
-            
     })
 })

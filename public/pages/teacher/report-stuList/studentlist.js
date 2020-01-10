@@ -83,7 +83,7 @@ $(() => {
                     saveLocalStorage("std-report-entity", data.data)
                     window.location.href = "/teacher-report"
                 } else {
-                    alert("请求失败");
+                    layer.msg("请求失败");
                 }
             }
         })
@@ -106,7 +106,7 @@ $(() => {
                     saveLocalStorage("std-decision-entity", data.data)
                     window.location.href = "/teacher-decision"
                 } else {
-                    alert("请求失败");
+                    layer.msg("请求失败");
                 }
             }
         })
@@ -386,15 +386,9 @@ $(() => {
         xuanranStuList(fliterIndex);
     })
 
-
-
-
-
-
-
     $('body').delegate(".uncheck-btn", "click", function () {
-        alert("学生还未填写,无法评价!")
-        return
+        layer.msg("学生还未填写,无法评价!")
+        return;
     })
 
 })
