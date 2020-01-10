@@ -1,10 +1,7 @@
 $(function(){
     document.onselectstart = function(){return false}
     var radio = document.getElementsByName("identity")
-    // console.log(111)
-    // console.log(IEVersion())
     let useridentity = null;
-    // console.log(BrowserType())
     if(BrowserType()!=='Edge' && BrowserType()!=='Chrome'){
         layer.alert("您现在使用的浏览器可能不能正确响应一些操作，若存在操作问题,请先尝试使用以下某一款浏览器:<a href='https://www.google.cn/chrome/'>谷歌浏览器</a>、<a href='https://browser.360.cn/ee/'>360浏览器极速模式</a>、<a href='https://www.microsoft.com/zh-cn/windows/microsoft-edge/'>win10 edge最新版浏览器</a>");
     }
@@ -65,16 +62,7 @@ $(function(){
         let loginType = useridentity;
         if(!loginType){
             alert("请选择身份!")
-        }else if(!$($inputs[0]).val()){
-            $($warnWord[0]).css("display", "block");
-        }else if(!$($inputs[1]).val()){
-            $($warnWord[1]).css("display", "block");
         }else{
-            $($warnWord[0]).css("display", "none");
-            $($warnWord[1]).css("display", "none");
-            // console.log(useraccount)
-            // console.log(psw)
-            // console.log(loginType)
             $.ajax({
                 type:"POST",
                 url:`${config.ip}:${config.port}/user/login`,
