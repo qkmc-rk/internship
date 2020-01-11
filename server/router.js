@@ -9,6 +9,14 @@ router.get('/login',function(req,res){
 router.get('/changepassword',function(req,res){
     res.render('./changepassword/index.html')
 })
+//通知列表页面
+router.get('/notify',function(req,res){
+    res.render('./notify/notify.html')
+})
+//通知详情页面
+router.get('/notify/:id',function(req,res){
+    res.render('./notify/notifydetail.html')
+})
 router.get('/',function(req,res){
     res.render('./login/index.html')
 })
@@ -62,12 +70,9 @@ router.get('/teacher-report',function(req,res){
 router.get('/teacher-decision',function(req,res){
     res.render('./teacher/report-comment/decision-comment.html')
 })
-
 //注销
 router.get('/logout',function(req,res){
-
     res.redirect('/login')
-
 })
 
 module.exports = router

@@ -1,4 +1,5 @@
 $(function(){
+    getNotifies();
     document.onselectstart = function(){return false}
     var radio = document.getElementsByName("identity")
     let useridentity = null;
@@ -200,4 +201,32 @@ function toRegister(){
     setTimeout(()=>{
         layer.alert("系统检测您的账号还未登陆过系统，请注册!");
     },300)
+}
+
+/**
+ * 获取后台的消息通知
+ */
+function getNotifies(){
+    ajaxByGet('/notify',(data)=>{
+        let msgs = data.data;
+        msgs = msgs.reverse();
+        for(var i=0; i<msgs.length; i++){
+            let title = msgs[i].title;
+            let date = msgs[i].gmtModified;
+            let id = msgs[i].id;
+            let li = generateNotifyLi(title, date, id);
+            $('.notice').append(li);
+            if(i>2){
+                break;
+            }
+        }
+    });
+}
+
+function generateNotifyLi(title, date, id){
+    let template = '<li>\n' +
+        '        <a href="/notify/' + id + '">' + title + '</a>\n' +
+        '    <span> [ ' + date.toString().substr(5,5) + ' ] </span>\n' +
+        '    </li>'
+    return template;
 }

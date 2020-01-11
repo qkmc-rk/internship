@@ -52,7 +52,7 @@
         },
         success:callback,
         error:function(err){
-            alert("服务器繁忙,请稍后重试!")
+            layer.msg("服务器繁忙,请稍后重试!")
         }
         })
     }
@@ -66,7 +66,7 @@
             data:data,
             success:callback,
             error:function(){
-                alert("服务器错误,请重试")
+                layer.msg("服务器错误,请重试")
             }
         })
     }

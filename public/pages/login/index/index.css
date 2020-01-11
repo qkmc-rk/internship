@@ -9,6 +9,10 @@ body {
   cursor: default;
   background-color: #20bff6;
 }
+a {
+  text-decoration: none;
+  font-family: "Arial Black";
+}
 .wrap {
   width: 980px;
   height: 900px;
@@ -195,17 +199,58 @@ input {
   color: #05aa54;
   text-decoration: none;
 }
-.notify{
-  margin-left: 1px;
-  height: 300px;
-  width: 300px;
-  position: absolute;
-  margin-top:1px;
-  margin-bottom:auto;
-  border: dashed 1px red;
-}
 .is_display {
   position: absolute;
   left: -10000px;
   top: -10000px;
+}
+#notify-box{
+  margin-top: 45px;
+  margin-bottom: 80px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 6px #1E9FFF;
+  height: 300px;
+  width: 50%;
+}
+.notify-content{
+  /*border: dashed 1px #1E9FFF;*/
+  height: 170px;
+  margin: 5px 10px -5px 10px;
+}
+.notice{
+  display: block;
+  padding: 0px 14px;
+  letter-spacing: 0.5px;
+}
+.notice li{
+  position: relative;
+  padding: 0px 48px 0px 0px;
+  border-bottom: 1px dashed #A7E2E7;
+}
+.notice li a{
+  display:block;
+  height:39px;
+  width:100%;
+  line-height:38px;
+  font-size:14px;
+  color:#000;
+  word-break:break-all;
+}
+.notice li span{position:absolute; right:0; top:0; line-height:36px; color:#bbb; text-align:center;}
+.notice li:last-child{border:0;}
+
+#tip{
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 6px lightgrey;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+}
+#tip h4{
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
 }

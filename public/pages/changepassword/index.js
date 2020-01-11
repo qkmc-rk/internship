@@ -59,7 +59,9 @@ function userCheck(){
             console.log(data);
             if(data.status === 1){
                 layer.msg("修改成功, 请登录");
-                window.location.href="/";
+                setTimeout(()=>{
+                    window.location.href="/";
+                },1000);
             }else{
                 layer.msg(data.message);
             }
