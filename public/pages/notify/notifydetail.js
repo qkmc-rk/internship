@@ -1,4 +1,5 @@
 $(function(){
+    window.id = 10;
     const url = window.location;
     const id = url.toString().split('/notify/')[1];
     let total = 0;
@@ -8,13 +9,14 @@ $(function(){
             console.log(res.data.title);
             const titleDom = $('.page-title-2')[0];
             const dateDom = $('.page-title-3')[0];
+            const readDom = $('.page-title-3')[1];
             const contentDom = $('.main-content')[0];
             const pubDom = $('.publisher')[0];
             titleDom.innerText = res.data.title;
             contentDom.innerHTML = res.data.content;
             pubDom.innerHTML = res.data.publisher + " | " + res.data.gmtModified.toString().substr(0,10);
             dateDom.innerText = '发布时间:' + res.data.gmtModified.toString().substr(0,16);
-
+            readDom.innerText = '阅读量: ' + res.data.read;
             total = res.data.total;
         } else{
             layer.msg(res.message);
