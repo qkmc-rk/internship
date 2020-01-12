@@ -241,16 +241,18 @@ input {
 .notice li:last-child{border:0;}
 
 #tip{
-  width: 100px;
-  height: 40px;
+  width: 130px;
+  height: 60px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px 6px lightgrey;
   position: fixed;
-  right: 5px;
-  bottom: 5px;
+  right: 70px;
+  bottom: 500px;
+  border: 1px solid aquamarine;
 }
 #tip h4{
+  text-align: center;
   height: 100%;
   width: 100%;
-  line-height: 40px;
+  line-height: 60px;
 }
